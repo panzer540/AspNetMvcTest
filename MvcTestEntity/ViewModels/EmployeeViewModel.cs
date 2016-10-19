@@ -9,7 +9,7 @@ namespace MvcTestEntity.ViewModels
 {
 
     /// <summary>
-    /// Employee的ViewModel
+    /// EmployeeViewModel
     /// </summary>
     public class EmployeeViewModel
     {
@@ -20,7 +20,8 @@ namespace MvcTestEntity.ViewModels
 
 
     /// <summary>
-    /// 在数据验证中返回数据 在CreatedEmployee网页中的Model数据有用
+    /// CreateEmployeeViewModel在进行服务器端验证失败时，将用户提交的数据返回给用户，
+    /// 保证用户输入的数据因为验证失败而清空
     /// </summary>
     public class CreateEmployeeViewModel:BaseViewModel
     {
@@ -42,14 +43,32 @@ namespace MvcTestEntity.ViewModels
 
 
     /// <summary>
-    /// Employee逻辑业务层
+    /// Employee逻辑数据操作层
     /// </summary>
     public class EmployeeBusinessLayer
     {
-        public List<Employee> GetEmployees()
+        public List<Employee> GetEmployees( string username )
         {
             SalesERPDAL salesDal = new SalesERPDAL();
-            return salesDal.Employees.ToList();
+            if (username == "admin")    //如果是管理员，则获取全部的Employee
+            {               
+                return salesDal.Employees.ToList();
+            }
+            else
+            {                       //否则只获取用户自己的数据，前提：用户名是FirstName
+                List<Employee> listemEM = new List<Employee>();
+                foreach (Employee e in salesDal.Employees)
+                {
+
+                    if (e.FirstName == username)
+                    {
+                        listemEM.Add(e);
+                        break;
+                    }
+                }
+                return listemEM;
+            }
+            
         }
         public Employee SaveEmployee(Employee e)
         {

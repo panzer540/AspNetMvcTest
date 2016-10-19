@@ -18,15 +18,13 @@ namespace MvcApplication1.Controllers
         [Authorize][HeaderFooterFilter]
         public ActionResult Index()
         {
-            EmployeeListViewModel empListVM = new EmployeeListViewModel();
+            EmployeeListViewModel empListVM = new EmployeeListViewModel();//这是EmployeeListViewModel的实例化
+            //List<EmployeeViewModel> evmList = new List<EmployeeViewModel>();//这是EmployeeViewModel 的集合
+            List<Employee> listemployee = new List<Employee>();//这是Employee的集合
+            EmployeeBusinessLayer employeebusinesslayer = new EmployeeBusinessLayer();//实例化数据逻辑操作对象
+            listemployee = employeebusinesslayer.GetEmployees( User.Identity.Name );//获取Employee数据，根据登陆的用户获取特定数据
 
-            List<EmployeeViewModel> evmList = new List<EmployeeViewModel>();
-            List<Employee> lemp = new List<Employee>();
-
-            EmployeeBusinessLayer ebl = new EmployeeBusinessLayer();
-            lemp = ebl.GetEmployees();
-
-            foreach (Employee emp in lemp)
+            foreach (Employee emp in listemployee)
             {
                 EmployeeViewModel evm = new EmployeeViewModel();
                 evm.EmployeeName = emp.FirstName + " " + emp.LastName;
@@ -41,17 +39,18 @@ namespace MvcApplication1.Controllers
                 {
                     evm.SalaryColor = "green";
                 }
-                evmList.Add(evm);
+                //evmList.Add(evm);
+                empListVM.Employees.Add(evm);
             }
 
-            empListVM.Employees = evmList;
+            //empListVM.Employees = evmList;
 
             return View("Index", empListVM);
         }
 
 
         /// <summary>
-        /// 保存网页表单提交的数据：保存Employee
+        /// 提交保存Save Employee
         /// </summary>
         /// <param name="e"></param>
         /// <param name="btnSubmit"></param>
@@ -62,7 +61,7 @@ namespace MvcApplication1.Controllers
 
             switch (btnSubmit)
             {
-                case "Save":
+                case "Save"://点击的是保存按钮
                     if (ModelState.IsValid && e.Salary != null)
                     {
                         EmployeeBusinessLayer ebl = new EmployeeBusinessLayer();
@@ -85,7 +84,7 @@ namespace MvcApplication1.Controllers
 
                         return View("CreateEmployee", cevm);
                     }
-                case "Cancel":
+                case "Cancel"://点击取消按钮，则取消并返回Index
                     return RedirectToAction("Index");
             }
             return new EmptyResult();
@@ -93,7 +92,7 @@ namespace MvcApplication1.Controllers
 
 
         /// <summary>
-        /// 跳转到添加页面
+        /// Add New Employee的链接
         /// </summary>
         /// <returns></returns>
         [AdminFilter][HeaderFooterFilter]

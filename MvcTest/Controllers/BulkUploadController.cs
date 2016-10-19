@@ -22,17 +22,25 @@ namespace MvcApplication1.Controllers
 
 
 
-
-        [AdminFilter][HandleError]
+        /// <summary>
+        /// 使用异步请求机制，处理用户上传的文件，避免线程等待。
+        /// </summary>
+        /// <param name="filevm"></param>
+        /// <returns></returns>
+        [AdminFilter][HandleError] //action调用过程中产生的异常用HandleError捕获
         public async Task<ActionResult> Upload( FileUploadViewModel filevm )
         {
-            List<Employee> employees = await Task.Factory.StartNew<List<Employee>>( ()=> GetEmployees(filevm))    ;
+            List<Employee> employees = await Task.Factory.StartNew<List<Employee>>( ()=> GetEmployees(filevm) )    ;
             EmployeeBusinessLayer ebl = new EmployeeBusinessLayer();
             ebl.UploadEmployees(employees);
 
             return RedirectToAction("Index","Employee");
         }
-
+        //       //\\
+        //      //  \\
+        //     // || \\
+        //        ||       
+        //        ||   被上面的方法调用
         private List<Employee> GetEmployees( FileUploadViewModel filevm )
         {
             List<Employee> employees = new List<Employee>();
@@ -45,7 +53,7 @@ namespace MvcApplication1.Controllers
                 Employee e = new Employee();
                 e.FirstName = value[0];
                 e.LastName = value[1];
-                e.Salary = int.Parse(value[2]);
+                e.Salary = int.Parse(value[2]);  //如果文件内容格式有问题将产生异常
                 employees.Add(e);
             }
             return employees;

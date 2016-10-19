@@ -50,7 +50,7 @@ namespace MvcApplication1.Controllers
 
                 FormsAuthentication.SetAuthCookie(u.UserName, false);
 
-                
+                //另一种保存cookies的方法
                 //FormsAuthenticationTicket LoginTicket = new FormsAuthenticationTicket(
                 //    1,
                 //    u.UserName,
