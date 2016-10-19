@@ -15,11 +15,11 @@ namespace MvcApplication1.Controllers
         /// 返回传递数据给视图Index
         /// </summary>
         /// <returns></returns>
-        [Authorize][HeaderFooterFilter]
+        [Authorize][HeaderFooterFilter]     //[Route("Employee/List")]
         public ActionResult Index()
         {
             EmployeeListViewModel empListVM = new EmployeeListViewModel();//这是EmployeeListViewModel的实例化
-            //List<EmployeeViewModel> evmList = new List<EmployeeViewModel>();//这是EmployeeViewModel 的集合
+            List<EmployeeViewModel> evmList = new List<EmployeeViewModel>();//这是EmployeeViewModel 的集合
             List<Employee> listemployee = new List<Employee>();//这是Employee的集合
             EmployeeBusinessLayer employeebusinesslayer = new EmployeeBusinessLayer();//实例化数据逻辑操作对象
             listemployee = employeebusinesslayer.GetEmployees( User.Identity.Name );//获取Employee数据，根据登陆的用户获取特定数据
@@ -39,11 +39,11 @@ namespace MvcApplication1.Controllers
                 {
                     evm.SalaryColor = "green";
                 }
-                //evmList.Add(evm);
-                empListVM.Employees.Add(evm);
+                evmList.Add(evm);
+                //empListVM.Employees.Add(evm);
             }
 
-            //empListVM.Employees = evmList;
+            empListVM.Employees = evmList;
 
             return View("Index", empListVM);
         }
