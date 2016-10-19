@@ -1,0 +1,36 @@
+﻿@using MvcTestEntity.ViewModels
+@model EmployeeListViewModel
+@{
+    Layout = "~/Views/Shared/MyView.cshtml";
+}
+
+@section TitleSection{
+    MyView
+}
+
+@section ContentBody{
+    <div>
+        @{
+            Html.RenderAction("GetAddNewLink");
+        }
+        <table border="1" bordercolor="#7D9EC0">
+            <tr>
+                <td align="center"><b>Employee Name</b></td>
+                <td align="center"><b>Salary</b></td>
+            </tr>
+            @foreach (EmployeeViewModel evm in Model.Employees)
+            {
+            <tr>
+                <td>@evm.EmployeeName</td>
+                <td>
+                    <span style="background-color:@evm.SalaryColor;">
+                        @evm.Salary
+                    </span>
+                </td>
+            </tr>
+            }
+
+        </table>
+
+    </div>
+}

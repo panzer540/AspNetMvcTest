@@ -1,0 +1,21 @@
+﻿
+@{
+    Layout = "~/Views/Shared/MyView.cshtml";
+}
+
+@section TitleSection{
+    FileUploadPage
+}
+
+@section ContentBody{
+    <div>
+        <a href="/Employee/Index">Back</a>
+        <form action="/BulkUpload/Upload" method="post" enctype="multipart/form-data">
+            Select File:<input type="file" name="FileUpload" value="" />
+            <input type="submit" name="btnUpload" value="Upload"/>
+
+        </form>
+
+    </div>
+}
+

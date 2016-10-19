@@ -1,0 +1,66 @@
+﻿@model MvcTestEntity.Models.UserDetails
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+    <script src="~/scripts/jquery-3.1.1.js"></script>
+    <script src="~/scripts/jquery.validate.js"></script>
+    <script src="~/scripts/jquery.validate.unobtrusive.js"></script>
+</head>
+<body>
+    <div> 
+        <!--
+        @Html.ValidationMessage("LoginError",new { style="color:red;"})
+        @using (Html.BeginForm("DoLogin", "Authentication", FormMethod.Post))
+        {
+            <table>
+                <tr>
+                    <td><label id="lable_UserName">UserName</label></td>
+                    <td><input type="text" id="txtUserName" name="UserName" value="" />@Html.ValidationMessage("UserName")</td>
+                    
+                </tr>
+                <tr>
+                    <td><label id="lable_Password">Password</label></td>
+                    <td><input type="password" id="txtPassword" name="Password" value="" />@Html.ValidationMessage("Password")</td>
+                </tr>
+                <tr>
+                    <td><input type="submit" id="btnLogin" name="Login" value="Login"/></td>
+                </tr>
+            </table>
+        }
+        -->
+
+
+        @Html.ValidationMessage("LoginError", new { style = "color:red;" })
+        @using (Html.BeginForm("DoLogin", "Authentication", FormMethod.Post))
+        {
+            <table>
+                <tr>
+                    <td>@Html.LabelFor(c => c.UserName)</td>
+                    <td>@Html.TextBoxFor(x => x.UserName)@Html.ValidationMessage("UserName")</td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(c=>c.Password)</td>
+                    <td>@Html.PasswordFor(x=>x.Password)@Html.ValidationMessage("Password")</td>
+                </tr>
+                <tr>
+                    <td><input type="submit" name="btnLogin" value="Login"/></td>
+                </tr>
+
+            </table>
+            
+            
+            
+
+        }
+
+
+    </div>
+</body>
+</html>
