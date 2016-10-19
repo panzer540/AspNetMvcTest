@@ -4,7 +4,7 @@ using MvcTestEntity.Models;
 using MvcTestEntity.ViewModels;
 using System;
 using MvcTestEntity.Filters;
-
+using ViewModel;
 
 namespace MvcApplication1.Controllers
 {

@@ -121,6 +121,10 @@
     <Content Include="scripts\ai.0.22.19-build00125.js" />
     <Content Include="scripts\ai.0.22.19-build00125.min.js" />
     <Content Include="scripts\EmployeeValidation.js" />
+    <Content Include="Areas\SPA\Views\web.config" />
+    <Content Include="Areas\SPA\Views\Main\Index.cshtml" />
+    <Content Include="Areas\SPA\Views\Main\AddNewLink.cshtml" />
+    <Content Include="Areas\SPA\Views\Main\EmployeeList.cshtml" />
     <None Include="scripts\jquery-3.1.1.intellisense.js" />
     <Content Include="scripts\jquery-3.1.1.js" />
     <Content Include="scripts\jquery-3.1.1.min.js" />
@@ -139,10 +143,15 @@
   <ItemGroup>
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\SPA\Controllers\EmployeeListController.cs" />
+    <Compile Include="Areas\SPA\Controllers\MainController.cs" />
+    <Compile Include="Areas\SPA\SPAAreaRegistration.cs" />
     <Compile Include="Controllers\AuthenticationController.cs" />
     <Compile Include="Controllers\BulkUploadController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
+    <Compile Include="Filters\AdminFilter.cs" />
+    <Compile Include="Filters\HeaderFooterFilter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -172,11 +181,25 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\SPA\Views\EmployeeList\" />
+    <Folder Include="Areas\SPA\Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MvcTestEntity\MvcTestEntity.csproj">
-      <Project>{8ec359f2-f46a-4287-aa54-d07a02c2cfcc}</Project>
-      <Name>MvcTestEntity</Name>
+    <ProjectReference Include="..\BusinessEntities\BusinessEntities.csproj">
+      <Project>{7e982b17-d91b-4b30-9a34-8c5d70483442}</Project>
+      <Name>BusinessEntities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BusinessLayer\BusinessLayer.csproj">
+      <Project>{41280995-bcc8-40d9-956c-4f519238bfbd}</Project>
+      <Name>BusinessLayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DataAccessLayer\DataAccessLayer.csproj">
+      <Project>{A0CC3149-AC78-4E96-8374-B54D7C5FAD0A}</Project>
+      <Name>DataAccessLayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ViewModel\ViewModel.csproj">
+      <Project>{6bf24a30-0ed2-4275-be69-5bd06c2db4bd}</Project>
+      <Name>ViewModel</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

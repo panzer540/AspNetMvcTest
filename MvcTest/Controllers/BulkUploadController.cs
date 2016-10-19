@@ -8,6 +8,7 @@ using MvcTestEntity.Filters;
 using MvcTestEntity.Models;
 using System.IO;
 using System.Threading.Tasks;
+using ViewModel;
 
 namespace MvcApplication1.Controllers
 {

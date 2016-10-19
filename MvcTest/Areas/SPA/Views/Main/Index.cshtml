@@ -1,0 +1,28 @@
+﻿@using ViewModel.SPA
+@model MainViewModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Employee Single Page Application</title>
+</head>
+<body>
+    <div style="text-align:center;">
+        Hello,@Model.UserName <a href="">Logout</a>
+    </div>
+    <hr />
+    
+    @{ 
+        Html.RenderPartial("EmployeeList");
+    }
+
+    <div style="text-align:right;background-color: silver;color: darkcyan;border: 1px solid gray;margin-top:2px;padding-right:10px;">
+        @Model.FooterData.CompanyName © @Model.FooterData.Year
+    </div>
+</body>
+</html>
