@@ -14,6 +14,7 @@ namespace MvcTest.Areas.SPA.Controllers
     public class MainController : Controller
     {
         // GET: SPA/Main
+        [Authorize]
         public ActionResult Index()
         {
             MainViewModel v = new MainViewModel();
