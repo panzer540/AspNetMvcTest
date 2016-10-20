@@ -14,6 +14,7 @@
     <meta name="viewport" content="width=device-width" />
     <title>Employee Single Page Application</title>
     <script>
+        //-----------------------------
         function OpenAddNew() {
             $.get("/SPA/Main/AddNew").then(
                 function (r) {
@@ -29,6 +30,24 @@
                 }
             )
         }
+        //------------------------------
+        function OpenEmployeesUpload() {
+            $.get("/SPA/SpaBulkUpload/UploadEmployees").then(
+                function (r) {
+                    $("<div id='DivUploadEmployees'></div>").html(r).
+                        dialog({
+                            width: 'auto', height: 'auto', modal: true, title: "Upload Employees",
+                            closeText: "",
+                            close: function () {
+                                $('#DivUploadEmployees').remove();
+                            }
+                        });
+                }
+            )
+        }
+        //-----------------------------
+
+
     </script>
 
 </head>

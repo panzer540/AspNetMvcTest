@@ -167,6 +167,7 @@
     <Content Include="Areas\SPA\Views\Main\AddNewLink.cshtml" />
     <Content Include="Areas\SPA\Views\Main\EmployeeList.cshtml" />
     <Content Include="Areas\SPA\Views\Main\CreateEmployee.cshtml" />
+    <Content Include="Areas\SPA\Views\SpaBulkUpload\UploadEmployees.cshtml" />
     <None Include="scripts\jquery-3.1.1.intellisense.js" />
     <Content Include="scripts\jquery-3.1.1.js" />
     <Content Include="scripts\jquery-3.1.1.min.js" />
@@ -227,7 +228,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\SPA\Views\Shared\" />
-    <Folder Include="Areas\SPA\Views\SpaBulkUpload\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BusinessEntities\BusinessEntities.csproj">
