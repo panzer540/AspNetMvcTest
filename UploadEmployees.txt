@@ -1,0 +1,3 @@
+FirstName|LastName|Salary
+tta1|tta1|14720
+tta2|tta2|24720
