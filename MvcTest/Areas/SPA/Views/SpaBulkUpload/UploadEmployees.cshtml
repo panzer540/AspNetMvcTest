@@ -1,0 +1,46 @@
+﻿
+<script>
+
+    function Upload() {
+        
+        var fd = new FormData();
+        var file = $('#employeesFile')[0];
+        fd.append("FileUpload", file.files[0]);
+        $.ajax({
+            url: ('/SPA/SpaBulkUpload/Upload'),
+            type: 'POST',
+            data: fd,
+            contentType: false,
+            processData: false,
+            success: function (r) {
+                //alert("aaa");
+                for (i = 0 ; i < r.Employees.length ; i++)
+                {
+                    var newTR = $('<tr></tr>');
+                    var nameTD = $('<td></td>');
+                    var salaryTD = $('<td></td>');
+
+                    nameTD.text(r.Employees[i].EmployeeName);
+                    salaryTD.text(r.Employees[i].Salary);
+                    salaryTD.css("background-color", r.Employees[i].SalaryColor);
+                    newTR.append(nameTD);
+                    newTR.append(salaryTD);
+                    $('#EmployeeTable').append(newTR);
+                }
+                
+                $('#DivUploadEmployees').dialog('close');
+            },
+            error:function(e){
+                alert(e);
+            }
+        });
+    }
+
+</script>
+
+<div>    
+    <input type="file" id="employeesFile" name="FileUpload" value=""/><br /><br />
+    <div style="float:right;">
+        <input type="button" name="btnUploadFile" value="Upload" onclick="Upload();" />
+    </div>
+</div>

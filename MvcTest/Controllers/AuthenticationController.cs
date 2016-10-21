@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using MvcTestEntity.ViewModels;
 using MvcTestEntity.Models;
 using System.Web.Security;
+using ViewModel;
 
 namespace MvcApplication1.Controllers
 {
